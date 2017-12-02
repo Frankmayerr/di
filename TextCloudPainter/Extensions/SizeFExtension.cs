@@ -9,7 +9,7 @@ namespace TextCloudPainter
 		{
 			return new SizeF(size.Width * coef, size.Height * coef);
 		}
-		public static Size Ceil(this SizeF size) => 
-			new Size((int)Math.Ceiling(size.Width), (int)Math.Ceiling(size.Height));
+		public static Size Floor(this SizeF size) => 
+			new Size((int)Math.Floor(size.Width), (int)Math.Floor(size.Height));
 	}
 }

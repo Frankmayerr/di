@@ -8,9 +8,18 @@ namespace TextCloudPainter.TextHandler
 {
 	public class TextReader:ITextReader
 	{
-		public List<string> GetWordsListFromText(List<string> text)
+		private readonly IFileReader fileReader;
+
+		public TextReader(IFileReader fileReader)
 		{
-			var separators = new string[] { ",", ".", "!", "?", "\'", " ", "\'s", ":", ";", "(", ")",
+			this.fileReader = fileReader;
+		}
+
+
+		public List<string> GetWordsListFromText()
+		{
+			var text = fileReader.GetText();
+			var separators = new string[] {",", ".", "!", "?", "\'", " ", "\'s", ":", ";", "(", ")",
 				"-", "\"", "<", ">", "]", "[", "{", "}", "*" };
 			var words = new List<string>();
 			foreach (var line in text)

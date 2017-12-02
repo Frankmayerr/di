@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A7B900C7-85B5-4B09-A5CD-45817B9A62E7}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TextCloudPainter</RootNamespace>
     <AssemblyName>TextCloudPainter</AssemblyName>
@@ -29,12 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TextCloudPainter.Program.ConsoleProgram</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Castle.Windsor.4.1.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
@@ -62,7 +65,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,14 +78,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Painter\BrushTypes.cs" />
+    <Compile Include="Painter\ColorParser.cs" />
     <Compile Include="Painter\RandomBrushMaker.cs" />
     <Compile Include="Painter\IBrushMaker.cs" />
     <Compile Include="Painter\ITextDrawer.cs" />
-    <Compile Include="Painter\PngTextCloudPainter.cs" />
+    <Compile Include="Painter\PngTextDrawer.cs" />
+    <Compile Include="ProgramTests.cs" />
     <Compile Include="Program\ConsoleProgram.cs" />
     <Compile Include="Program\IProgram.cs" />
+    <Compile Include="Program\Options.cs" />
     <Compile Include="WordsLayouter\CircularCloudLayouter.cs" />
-    <Compile Include="WordsLayouter\CircularCloudLayouterTests.cs" />
     <Compile Include="Extensions\PointExtensions.cs" />
     <Compile Include="Extensions\PointExtensionsTests.cs" />
     <Compile Include="Extensions\SizeFExtension.cs" />
@@ -98,6 +107,7 @@
     <Compile Include="TextHandler\TextHandler.cs" />
     <Compile Include="TextHandler\TextReader.cs" />
     <Compile Include="TextHandler\WordHandler.cs" />
+    <Compile Include="WordsLayouter\WordLayouterType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

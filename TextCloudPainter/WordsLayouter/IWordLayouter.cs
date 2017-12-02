@@ -7,6 +7,6 @@ namespace TextCloudPainter
 	{
 		int ImageWidth { get; }
 		int ImageHeight { get; }
-		List<WordInRectangle> GetWordsInCloud(Dictionary<string, double> wordsStatistics, Dictionary<string, SizeF> wordsRelevantSizes);
+		List<WordInRectangle> GetWordsInCloud();
 	}
 }

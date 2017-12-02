@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using TextCloudPainter.TextHandler;
 
 namespace TextCloudPainter
 {
@@ -11,19 +12,30 @@ namespace TextCloudPainter
 		private readonly IRectangleLayouter layouter;
 		private readonly FontFamily textFontFamily;
 		private readonly Graphics graphics;
+		private readonly Dictionary<string, double> wordsStatistics;
 		public int ImageWidth => ImageSize.Width;
 		public int ImageHeight => ImageSize.Height;
-		public int Area => ImageHeight * ImageWidth;
-
-		public FrequencyDependentWordsLayouter(IRectangleLayouter layouter, Size imageSize, FontFamily textFontFamily, Graphics graphics)
+		public int Area
 		{
+			get
+			{
+				var radius = Math.Min(ImageHeight, ImageWidth) / 2;
+				var mes = (int) Math.Floor(radius * radius * 3.14159265359*0.8);
+				return mes;
+			}
+		}
+
+		public FrequencyDependentWordsLayouter(ITextHandler textHandler, IRectangleLayouter layouter, Size imageSize, FontFamily textFontFamily)
+		{
+			wordsStatistics = textHandler.GetWordFrequencyPercentageStatistic();
 			ImageSize = imageSize;
 			this.textFontFamily = textFontFamily;
-			this.graphics = graphics;
+			var image = new Bitmap(ImageWidth, ImageHeight);
+			this.graphics = Graphics.FromImage(image);
 			this.layouter = layouter;
 		}
 
-		public List<WordInRectangle> GetWordsInCloud(Dictionary<string, double> wordsStatistics, Dictionary<string, SizeF> wordsRelevantSizes)
+		public List<WordInRectangle> GetWordsInCloud()
 		{
 			if (wordsStatistics.Count == 0)
 				return new List<WordInRectangle>(new WordInRectangle[0]);
@@ -32,7 +44,7 @@ namespace TextCloudPainter
 			{
 				var wordFontSize = GetWordSizeFromFontParameters(wordItem.Key, graphics);
 				var size = GetSizeFromWordStatistic(wordFontSize, wordItem.Value);
-				sizes.Add(size.Ceil());
+				sizes.Add(size.Floor());
 			}
 			var rectangles = layouter
 				.PutAllRectangles(sizes);
@@ -44,11 +56,11 @@ namespace TextCloudPainter
 
 		private SizeF GetSizeFromWordStatistic(SizeF wordSize, double percentage)
 		{
-			var newWordArea = Area * percentage / 100;
+			var newWordArea = Area * percentage;
 			var wordArea = wordSize.Height * wordSize.Width;
 			// system of two equations
-			var newHeight = Math.Sqrt(wordArea * newWordArea) / wordSize.Width;
-			var newWidth = Math.Sqrt(wordArea * newWordArea) / wordSize.Height;
+			var newHeight = Math.Sqrt(wordArea * newWordArea) / wordSize.Height;
+			var newWidth = Math.Sqrt(wordArea * newWordArea) / wordSize.Width;
 			return new SizeF((float)newHeight, (float)newWidth);
 		}
 

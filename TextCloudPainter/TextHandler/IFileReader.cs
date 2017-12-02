@@ -4,6 +4,6 @@ namespace TextCloudPainter.TextHandler
 {
 	public interface IFileReader
 	{
-		List<string> GetText(string filemane);
+		List<string> GetText();
 	}
 }

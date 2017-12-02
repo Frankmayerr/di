@@ -5,6 +5,6 @@ namespace TextCloudPainter.TextHandler
 {
 	public interface ITextReader
 	{
-		List<string> GetWordsListFromText(List<string> text);
+		List<string> GetWordsListFromText();
 	}
 }

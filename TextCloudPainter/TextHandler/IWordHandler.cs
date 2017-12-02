@@ -7,7 +7,7 @@ namespace TextCloudPainter.TextHandler
 	{
 		List<string> HandleWordsList(List<string> words);
 		void AddBadWord(string word);
-		void AddNewWordConversion(Func<string, string> cond);
+		void AddNewWordConversion(Func<string, string> conv);
 		void AddNewWordCondition(Func<string, bool> cond);
 	}
 }
