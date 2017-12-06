@@ -55,7 +55,7 @@ namespace TextCloudPainter.Program
 			container.RegisterType<TextHandler.TextHandler>()
 				.WithParameter("maxWordAmount", options.MaxWordsAmount)
 				.As<ITextHandler>();
-			container.RegisterType<CircularCloudLayouter>()
+			container.RegisterType<DistanceRectangleLayouter>()
 				.WithParameter("center", new Point(0, 0))
 				.As<IRectangleLayouter>();
 			container.RegisterType<FrequencyDependentWordsLayouter>()

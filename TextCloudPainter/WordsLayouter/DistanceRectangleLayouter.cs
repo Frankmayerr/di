@@ -7,12 +7,12 @@ using System.Drawing;
 
 namespace TextCloudPainter
 {
-	public class CircularCloudLayouter:IRectangleLayouter
+	public class DistanceRectangleLayouter:IRectangleLayouter
 	{
 		public readonly Point Center;
 		public List<Rectangle> prevRects = new List<Rectangle>();
 
-		public CircularCloudLayouter(Point center)
+		public DistanceRectangleLayouter(Point center)
 		{
 			Center = center;
 		}

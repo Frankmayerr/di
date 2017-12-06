@@ -16,24 +16,17 @@ namespace TextCloudPainter
 		private readonly IWordLayouter wordsPlacer;
 		private readonly IBrushMaker brushMaker;
 		private readonly ITextHandler textHandler;
-		private readonly IFileReader fileReader;
-		private readonly ITextReader textReader;
-		private readonly IWordHandler wordHandler;
 		private readonly string filename;
 
 		public PngTextDrawer(IWordLayouter wordsPlacer, IBrushMaker brushMaker, FontFamily fontFamily,
-			Color backgroundColor, Size imageSize, ITextHandler textHandler, IFileReader fileReader, ITextReader textReader, IWordHandler wordHandler, string filename)
+			Color backgroundColor, Size imageSize, ITextHandler textHandler, string filename)
 		{
-			
 			this.wordsPlacer = wordsPlacer;
 			this.brushMaker = brushMaker;
 			this.backgroundColor = backgroundColor;
 			textFontFamily = fontFamily;
 			this.imageSize = imageSize;
 			this.textHandler = textHandler;
-			this.fileReader = fileReader;
-			this.textReader = textReader;
-			this.wordHandler = wordHandler;
 			this.filename = filename;
 		}
 
@@ -87,7 +80,7 @@ namespace TextCloudPainter
 			{
 				fontSize++;
 				curFont = new Font(fontFamily, fontSize);
-				curArea = GetAreaFromWord(word.Word, g, curFont); 
+				curArea = GetAreaFromWord(word.Word, g, curFont);
 			}
 			if (curArea > maxArea)
 				curFont = new Font(fontFamily, --fontSize);

@@ -95,7 +95,8 @@
     <Compile Include="Program\IProgram.cs" />
     <Compile Include="Program\Options.cs" />
     <Compile Include="Tests\TextHandlerTests.cs" />
-    <Compile Include="WordsLayouter\CircularCloudLayouter.cs" />
+    <Compile Include="Tests\WordLayouterTests.cs" />
+    <Compile Include="WordsLayouter\DistanceRectangleLayouter.cs" />
     <Compile Include="Extensions\PointExtensions.cs" />
     <Compile Include="Extensions\PointExtensionsTests.cs" />
     <Compile Include="Extensions\SizeFExtension.cs" />
