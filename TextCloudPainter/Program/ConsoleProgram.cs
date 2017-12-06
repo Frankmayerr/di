@@ -23,9 +23,7 @@ namespace TextCloudPainter.Program
 			{
 				args = new[]
 				{
-					
-
-					"-i", "fakeinput.txt",
+					"-i", "input.txt",
 					"-o", "output.txt",
 					"-h", "5000",
 					"-w", "5000",
