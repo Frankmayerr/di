@@ -16,7 +16,7 @@ namespace TextCloudPainter
 				"-i", "Bukowski_short.txt",
 				"-o", "buk.png",
 			};
-			ConsoleProgram.Main(args);
+			ConsoleProgram.Main(new string[]{});
 		}
 	}
 }

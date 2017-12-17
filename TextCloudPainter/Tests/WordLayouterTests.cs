@@ -47,8 +47,7 @@ namespace TextCloudPainter.Tests
 				new WordInRectangle("bbb", new Rectangle(1,1,2,2))
 			};
 			var actual = wordLayouter.GetWordsInCloud();
-			for (int i = 0; i < actual.Count; i++)
-				actual[i].ShouldBeEquivalentTo(expected[i]);
+			CollectionAssert.AreEquivalent(expected, actual);
 		}
 	}
 }

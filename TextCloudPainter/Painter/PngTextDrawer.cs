@@ -83,7 +83,7 @@ namespace TextCloudPainter
 				curArea = GetAreaFromWord(word.Word, g, curFont);
 			}
 			if (curArea > maxArea)
-				curFont = new Font(fontFamily, --fontSize);
+				curFont = new Font(fontFamily, Math.Max(fontSize-1, 1));
 			return curFont;
 		}
 

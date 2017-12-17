@@ -24,8 +24,8 @@ namespace TextCloudPainter.TextHandler
 			var words = new List<string>();
 			foreach (var line in text)
 			{
-				words.AddRange(line.Split(separators, StringSplitOptions.RemoveEmptyEntries)
-					.Where(IsWord));
+				var splited = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+				words.AddRange(splited.Where(IsWord));
 			}
 			return words;
 		}

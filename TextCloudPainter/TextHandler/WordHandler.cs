@@ -21,25 +21,13 @@ namespace TextCloudPainter.TextHandler
 			wordConditions.Add(word => word.Length >= WordMinLength);
 			wordConditions.Add(word => !badWords.Contains(word));
 			wordConversions.Add(word => word.ToLowerInvariant());
-			//wordConversions.Add(word =>
-			//{
-			//	using (var hunspell = new Hunspell("dicts/en_US.aff", "dicts/en_US.dic"))
-			//	{
-			//		var stems = hunspell.Stem(word);
-			//		return stems.Any() ? stems[0] : word;
-			//	}
-			//});
-			//wordConversions.Add(word =>
-			//{
-			//	var sw = new StringWriter();
-			//	Console.SetOut(sw);
-			//	Console.SetError(sw);
-			//	using (var hunspell = new Hunspell("dicts/ru.aff", "dicts/ru.dic"))
-			//	{
-			//		var stems = hunspell.Stem(word);
-			//		return stems.Any() ? stems[0] : word;
-			//	}
-			//});
+
+			var baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
+			var filename = baseDir + "\\stop_words.txt";
+			var line = "";
+			using (var sr = new StreamReader(filename, System.Text.Encoding.Default))
+				while ((line = sr.ReadLine()) != null)
+					badWords.Add(line);
 		}
 
 		public void AddNewWordCondition(Func<string, bool> cond)

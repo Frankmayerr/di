@@ -20,7 +20,7 @@ namespace TextCloudPainter
 			get
 			{
 				var radius = Math.Min(ImageHeight, ImageWidth) / 2;
-				var mes = (int) Math.Floor(radius * radius * 3.14159265359*0.8);
+				var mes = (int) Math.Floor(radius * radius * Math.PI*0.8);
 				return mes;
 			}
 		}
@@ -60,7 +60,7 @@ namespace TextCloudPainter
 			var wordArea = wordSize.Height * wordSize.Width;
 			// system of two equations
 			var newHeight = Math.Sqrt(wordArea * newWordArea) / wordSize.Height;
-			var newWidth = Math.Sqrt(wordArea * newWordArea) / wordSize.Width;
+			var newWidth = Math.Sqrt(wordArea * newWordArea) * 0.95 / wordSize.Width;
 			return new SizeF((float)newHeight, (float)newWidth);
 		}
 

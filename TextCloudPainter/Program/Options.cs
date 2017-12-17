@@ -10,14 +10,11 @@ namespace ConsoleTagsCloudApp
 {
 	public class Options
 	{
-		[Option('i', "input_file", HelpText = "Text for building words cloud", Required = true)]
+		[Option('i', "input_file", HelpText = "Text for building words cloud", DefaultValue = "input.txt", Required = true)]
 		public string InputFile { get; set; }
 
-		[Option('o', "output_file", HelpText = "Image name for words cloud", Required = true)]
+		[Option('o', "output_file", HelpText = "Image name for words cloud", DefaultValue = "output.txt", Required = true)]
 		public string ImageOutputFile { get; set; }
-
-		//[Option('w', "word_conditions", HelpText = "List of conditions - will it be added or not")]
-		//public List<Func<string, bool>> WordsConditions { get; set; }
 
 		[OptionArray('b', "background_color", DefaultValue = new[] { "255", "0", "0", "0" },
 			HelpText = ("Background color in specified format:\n"))]
@@ -43,6 +40,14 @@ namespace ConsoleTagsCloudApp
 		public string GetUsage()
 		{
 			return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
+		}
+
+		public void ParseOptions()
+		{
+			if (ImageHeight <= 0 || ImageWidth <= 0)
+				throw new ArgumentException($"Incorrect width {ImageWidth} or height {ImageHeight}");
+			if (MaxWordsAmount <= 0)
+				throw new ArgumentException($"Incorrect max words count {MaxWordsAmount}");
 		}
 	}
 }

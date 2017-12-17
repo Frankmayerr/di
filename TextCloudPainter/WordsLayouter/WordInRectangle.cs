@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Company.Common.Control;
 using NUnit.Framework.Constraints;
 
 namespace TextCloudPainter
@@ -15,6 +17,20 @@ namespace TextCloudPainter
 		{
 			this.Word = word;
 			this.Rectangle = rectangle;
+		}
+
+		public override bool Equals(object other)
+		{
+			try
+			{
+				var wir = (WordInRectangle) other;
+				return Word == wir.Word && Rectangle == wir.Rectangle;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+			
 		}
 	}
 }

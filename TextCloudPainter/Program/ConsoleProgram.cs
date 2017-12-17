@@ -24,7 +24,7 @@ namespace TextCloudPainter.Program
 				args = new[]
 				{
 					"-i", "input.txt",
-					"-o", "output.txt",
+					"-o", "output.png",
 					"-h", "5000",
 					"-w", "5000",
 					"-n", "100",
@@ -39,8 +39,10 @@ namespace TextCloudPainter.Program
 				return;
 			}
 
-			options.InputFile = baseDir + "\\" + options.InputFile;
-			options.ImageOutputFile = baseDir + "\\" + options.ImageOutputFile;
+			options.ParseOptions();
+
+			options.InputFile = $"{baseDir}\\{options.InputFile}";
+			options.ImageOutputFile = $"{baseDir}\\{options.ImageOutputFile}";
 
 			var fontFamily = new FontFamily(options.FontFamily);
 
