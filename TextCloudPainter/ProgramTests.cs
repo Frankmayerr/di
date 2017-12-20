@@ -13,8 +13,8 @@ namespace TextCloudPainter
 			var program = new ConsoleProgram();
 			string[] args = new[]
 			{
-				"-i", "Bukowski_short.txt",
-				"-o", "buk.png",
+				"-i", "borb.txt",
+				"-o", "borb.png",
 			};
 			ConsoleProgram.Main(new string[]{});
 		}

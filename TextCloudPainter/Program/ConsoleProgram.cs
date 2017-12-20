@@ -19,18 +19,6 @@ namespace TextCloudPainter.Program
 		public static void Main(string[] args)
 		{
 			var baseDir = System.AppDomain.CurrentDomain.BaseDirectory;
-			if (args.Length == 0)
-			{
-				args = new[]
-				{
-					"-i", "input.txt",
-					"-o", "output.png",
-					"-h", "5000",
-					"-w", "5000",
-					"-n", "100",
-					"-b", "255", "30", "30", "30"
-				};
-			}
 			var options = new Options();
 
 			if (!Parser.Default.ParseArguments(args, options))

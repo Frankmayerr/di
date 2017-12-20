@@ -10,10 +10,10 @@ namespace ConsoleTagsCloudApp
 {
 	public class Options
 	{
-		[Option('i', "input_file", HelpText = "Text for building words cloud", DefaultValue = "input.txt", Required = true)]
+		[Option('i', "input_file", HelpText = "Text for building words cloud", DefaultValue = "input.txt")]
 		public string InputFile { get; set; }
 
-		[Option('o', "output_file", HelpText = "Image name for words cloud", DefaultValue = "output.txt", Required = true)]
+		[Option('o', "output_file", HelpText = "Image name for words cloud", DefaultValue = "output.png")]
 		public string ImageOutputFile { get; set; }
 
 		[OptionArray('b', "background_color", DefaultValue = new[] { "255", "0", "0", "0" },
